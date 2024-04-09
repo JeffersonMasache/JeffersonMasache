@@ -1,20 +1,51 @@
-<table>
-    <thead>
-        <tr>
-            <th>Logo</th>
-            <th>Nombre del producto</th>
-            <th>Descripción</th>
-            <th>Fecha de liberación</th>
-            <th>Fecha de reestructuración</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of financialProducts">
-            <td>{{product.logo}}</td>
-            <td>{{product.name}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.date_release}}</td>
-            <td>{{product.date_revision}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="page">
+    <h3 class="page-title">BANCO</h3>
+    <div class="content">
+        <div class="content-head">
+            <div class="between-content">
+                <div>
+                    <input class="input-field" [value]="searchBox" title="Búsqueda" placeholder="Search..."
+                        (keyup)="changeSearchBox($event)">
+                </div>
+                <div>
+                    <button class="btn-action" (click)="addFinancialProduct()"> Agregar</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="content-body">
+            <table>
+                <thead>
+                    <tr class="table-head">
+                        <th>Logo</th>
+                        <th>Nombre del producto</th>
+                        <th>Descripción</th>
+                        <th>Fecha de liberación</th>
+                        <th>Fecha de reestructuración</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-row" *ngFor="let product of filtered">
+                        <td><img class="img-logo" src="{{product.logo}}" alt="Italian Trulli"></td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.date_release | date:'MM/dd/yyyy'}}</td>
+                        <td>{{product.date_revision | date:'MM/dd/yyyy'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="between-content">
+                <div>
+                    <h5>{{filtered.length}} Resultados</h5>
+                </div>
+                <div>
+                    <select (change)="onPaginationChange($event)">
+                        <option *ngFor="let pagination of paginationOptions" [value]="pagination">{{ pagination }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
