@@ -50,9 +50,9 @@ export class FinancialProductsComponent implements OnInit {
 
   async addFinancialProduct() {
     let product: FinancialProduct = {
-      id: 'rcmp',
-      name: 'Recompensas',
-      description: 'Programa de recompensas',
+      id: 'ahr-prg',
+      name: 'Ahorro programado',
+      description: 'Programa de ahorro programado',
       logo: 'https://previews.123rf.com/images/sdecoret/sdecoret1706/sdecoret170600382/79419792-hombre-de-negocios-en-el-fondo-borroso-recibiendo-e-mails-en-sus-dispositivos-digitales.jpg',
       date_release: new Date(),
       date_revision: new Date()
