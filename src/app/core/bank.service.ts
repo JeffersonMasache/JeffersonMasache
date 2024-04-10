@@ -33,5 +33,7 @@ export class BankService {
   public deleteProduct(id: string): Promise<any> {
     return firstValueFrom(this.httpClient.delete(this.baseUrl, { params: { 'id': id }, responseType: 'text' }));
   }
+
+  
 }
 
