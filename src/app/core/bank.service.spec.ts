@@ -25,7 +25,7 @@ describe('BankService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should fetch financial services from API', () => {
+  it('Servicio de consulta de producto', () => {
     const mockData: FinancialProduct[] = [{
       id: 'prod-1',
       name: 'Producto 1',
@@ -33,7 +33,16 @@ describe('BankService', () => {
       description: 'Descripción product 1',
       date_release: new Date(),
       date_revision: new Date(),
-    }];
+    },
+    {
+      id: 'prod-2',
+      name: 'Producto 2',
+      logo: 'https://www.educaciontrespuntocero.com/wp-content/uploads/2020/04/mejores-bancos-de-imagenes-gratis.jpg',
+      description: 'Descripción product 2',
+      date_release: new Date(),
+      date_revision: new Date(),
+    }
+    ];
 
     service.getFinancialServices().then(data => {
       expect(data).toEqual(mockData);
@@ -44,12 +53,12 @@ describe('BankService', () => {
     req.flush(mockData);
   });
 
-  it('should add financial service via API', () => {
+  it('Servicio de añadir producto', () => {
     const mockProduct: FinancialProduct = {
-      id: 'prod-1',
-      name: 'Producto 1',
+      id: 'prod-2',
+      name: 'Producto 2',
       logo: 'https://www.educaciontrespuntocero.com/wp-content/uploads/2020/04/mejores-bancos-de-imagenes-gratis.jpg',
-      description: 'Descripción product 1',
+      description: 'Descripción product 2',
       date_release: new Date(),
       date_revision: new Date(),
     };
@@ -63,5 +72,4 @@ describe('BankService', () => {
     req.flush(mockProduct);
   });
 
-  // Add similar tests for updateFinancialService, verificateProduct, and deleteProduct methods
 });

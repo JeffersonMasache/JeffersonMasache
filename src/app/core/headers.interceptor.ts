@@ -23,14 +23,12 @@ export class HeadersInterceptor implements HttpInterceptor {
     return next.handle(requestModified).pipe(
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          debugger;
           if (request.method != 'GET') {
             this.toastService.showSuccess('Se ha realizado la acción de manera satisfactoria');
           }
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        debugger;
         if (request.method != 'GET') {
           this.toastService.showError(error.error);
         }
