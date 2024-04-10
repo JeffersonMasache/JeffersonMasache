@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="content">
+        <form [formGroup]="form">
+            <div class="title">
+                <h3>Formulario de registro</h3>
+            </div>
+            <div class="form-container">
+                <div class="field-container">
+                    <label class="title-label">ID</label>
+                    <input class="input-field"
+                        [ngClass]="{'input-error': form.get('id')?.touched && form.get('id')?.errors!=null}"
+                        formControlName="id" [value]="model.id" title="ID">
+                    <label class="msg-error" *ngIf="form.get('id')?.touched && form.get('id')?.errors!=null">
+                        <p> ID no válido.</p>
+                    </label>
+                </div>
+                <div class="field-container">
+                    <label class="title-label">Nombre</label>
+                    <input class="input-field"
+                        [ngClass]="{'input-error': form.get('name')?.touched && form.get('name')?.errors!=null}"
+                        formControlName="name" [value]="model.name" title="Nombre">
+                    <label class="msg-error" *ngIf="form.get('name')?.touched && form.get('name')?.errors!=null">
+                        <p> Nombre no válido.</p>
+                    </label>
+                </div>
+                <div class="field-container">
+                    <label class="title-label">Descripción</label>
+                    <input class="input-field"
+                        [ngClass]="{'input-error': form.get('description')?.touched && form.get('description')?.errors!=null}"
+                        formControlName="description" [value]="model.description" title="Descripción">
+                    <label class="msg-error"
+                        *ngIf="form.get('description')?.touched && form.get('description')?.errors!=null">
+                        <p> Description no válida.</p>
+                    </label>
+                </div>
+                <div class="field-container">
+                    <label class="title-label">Logo</label>
+                    <input class="input-field"
+                        [ngClass]="{'input-error': form.get('logo')?.touched && form.get('logo')?.errors!=null}"
+                        formControlName="logo" [value]="model.logo" title="Logo">
+                    <label class="msg-error" *ngIf="form.get('logo')?.touched && form.get('logo')?.errors!=null">
+                        <p> Description no válida.</p>
+                    </label>
+                </div>
+                <div class="field-container">
+                    <label class="title-label">Fecha Liberación</label>
+                    <input class="input-field" type="date"
+                        [ngClass]="{'input-error': form.get('date_release')?.touched && form.get('date_release')?.errors!=null}"
+                        formControlName="date_release" title="Fecha Liberación">
+                    <label class="msg-error"
+                        *ngIf="form.get('date_release')?.touched && form.get('date_release')?.errors!=null">
+                        <p> Fecha de liberación no válida.</p>
+                    </label>
+                </div>
+                <div class="field-container">
+                    <label class="title-label">Fecha Revisión</label>
+                    <input class="input-field" type="date"
+                        [ngClass]="{'input-error': form.get('date_revision')?.touched && form.get('date_revision')?.errors!=null}"
+                        formControlName="date_revision" [value]="model.date_revision" title="Fecha Revisión" readonly>
+                    <label class="msg-error"
+                        *ngIf="form.get('date_revision')?.touched && form.get('date_revision')?.errors!=null">
+                        <p> Fecha de revisión no válida.</p>
+                    </label>
+                </div>
+            </div>
+            <div class="field-container">
+                <button class="btn btn-clear" (click)="clearFields()">Reiniciar</button>
+                <button class="btn btn-action" (click)="addProduct()" [disabled]="form.invalid">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>

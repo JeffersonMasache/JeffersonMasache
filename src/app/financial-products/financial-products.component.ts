@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BankService } from '../bank.service';
+import { BankService } from '../core/bank.service';
 import { FinancialProduct } from '../shared/models/financial-product';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'financial-products',
@@ -12,9 +13,12 @@ export class FinancialProductsComponent implements OnInit {
   financialProducts: FinancialProduct[] = [];
   filtered: FinancialProduct[] = [];
   searchBox: string = '';
+  deleteLabel: string = '';
+  deleteId: string = '';
   paginationOptions: string[] = ['5', '10', '20'];
   paginationSelected: string = '';
-  constructor(private services: BankService) { }
+  confirmDelete = false;
+  constructor(private services: BankService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getData();
@@ -48,17 +52,26 @@ export class FinancialProductsComponent implements OnInit {
     this.filtered = [... this.financialProducts.slice(0, parseInt(this.paginationSelected))];
   }
 
-  async addFinancialProduct() {
-    let product: FinancialProduct = {
-      id: 'ahr-prg',
-      name: 'Ahorro programado',
-      description: 'Programa de ahorro programado',
-      logo: 'https://previews.123rf.com/images/sdecoret/sdecoret1706/sdecoret170600382/79419792-hombre-de-negocios-en-el-fondo-borroso-recibiendo-e-mails-en-sus-dispositivos-digitales.jpg',
-      date_release: new Date(),
-      date_revision: new Date()
-    };
-    var productCreated = await this.services.addFinancialService(product);
-    await this.getFinancialServices();
-    console.log('productCreated', productCreated);
+  addProduct() {
+    this.router.navigate(['create-product'], { relativeTo: this.route })
+  }
+
+  updateProduct(product: FinancialProduct) {
+    this.router.navigate(['update-product'], { relativeTo: this.route, queryParams: { product: JSON.stringify(product) } })
+  }
+
+  removeProduct(id: string, name: string) {
+    this.confirmDelete = true;
+    this.deleteId = id;
+    this.deleteLabel = `¿Estás seguro de eliminar el producto ${name}?`;
+  }
+
+  async handleConfirm(confirm: boolean) {
+    if (confirm) {
+      const deleteSuccess = await this.services.deleteProduct(this.deleteId);
+      console.log('deleteSuccess', deleteSuccess);
+      await this.getFinancialServices();
+    }
+    this.confirmDelete = false;
   }
 }
