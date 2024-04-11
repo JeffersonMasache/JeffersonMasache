@@ -3,9 +3,12 @@
 
 Resolución de proyecto:
 ### Ejecución
-Clonar el proyecto [JeffersonMasache](https://github.com/JeffersonMasache/JeffersonMasache) desde el repositorio público con el comando github.
 
-- Descarga del proyecto.
+- Abrir una ventana de comandos:
+```
+cmd
+```
+- Clonamos el proyecto [JeffersonMasache](https://github.com/JeffersonMasache/JeffersonMasache) desde el repositorio público en github.
 ```
 git clone https://github.com/JeffersonMasache/JeffersonMasache
 ```
@@ -25,7 +28,10 @@ Se abre un navegador con el proyecto.
 
 ## Pruebas
 Ejecución de pruebas con jest.
-
+- Ingresamos al directorio del proyecto
+```
+cd JeffersonMasache
+```
 - Ejecución de pruebas.
 ```
 npm run test
